@@ -21,9 +21,11 @@
             {% block header %}
                 {% include 'partials/header.html.twig' %}
             {% endblock %}
-            <main class="container py-5">
-                {% block main %}{% endblock %}
-            </main>
+            {% block main %}
+                <main class="container py-5">
+                    {% block container %}{% endblock %}
+                </main>
+            {% endblock %}
         {% endblock %}
     </body>
 </html>

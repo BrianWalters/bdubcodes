@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}File list{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="list-group">
+                {% for file in files %}
+                    <li class="list-group-item">
+                        <a href="{{ file.path|fileHref }}">{{ file.path }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
