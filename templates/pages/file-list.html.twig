@@ -6,6 +6,9 @@
     <div class="row">
         <div class="col-sm-12">
             <ul class="list-group">
+                <p>
+                    <a class="btn btn-primary" href="{{ path('file_upload') }}">Upload</a>
+                </p>
                 {% for file in files %}
                     <li class="list-group-item">
                         <a href="{{ file.path|fileHref }}">{{ file.path }}</a>

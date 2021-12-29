@@ -13,6 +13,7 @@ class SiteController extends AbstractController
     #[Route('/', name: 'home')]
     public function home(): Response
     {
+        $this->addFlash('success', 'poop');
         return $this->render('pages/home.html.twig');
     }
 }

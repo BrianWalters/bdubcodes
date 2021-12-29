@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}File upload{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <div class="col-sm-12">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <p>
+                <button class="btn btn-primary" type="submit">
+                    Submit
+                </button>
+            </p>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -21,6 +21,15 @@
             {% block header %}
                 {% include 'partials/header.html.twig' %}
             {% endblock %}
+            {% block flashes %}
+                {% for type, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ type }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endblock %}
             {% block main %}
                 <main class="container py-5">
                     {% block container %}{% endblock %}
