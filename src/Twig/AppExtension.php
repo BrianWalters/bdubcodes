@@ -2,7 +2,7 @@
 
 namespace App\Twig;
 
-use App\Controller\FileController;
+use App\Controller\AdminController;
 use Symfony\Component\Asset\Packages;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -33,6 +33,6 @@ class AppExtension extends AbstractExtension
 
     public function fileHref(string $value): string
     {
-        return $this->asset->getUrl(FileController::FILE_DIR . '/' . $value);
+        return $this->asset->getUrl(AdminController::FILE_DIR . '/' . $value);
     }
 }

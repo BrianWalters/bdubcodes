@@ -9,11 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FileController extends AbstractController
+class AdminController extends AbstractController
 {
     public const FILE_DIR = 'files';
 
-    #[Route('/files', name: 'file_list')]
+    #[Route('/admin/files', name: 'file_list')]
     public function fileList(FilesystemOperator $fileStorage): Response
     {
         $directoryListing = $fileStorage->listContents('.');
