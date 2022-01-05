@@ -5,7 +5,16 @@
 {% block container %}
     <div class="row">
         <div class="col-sm-12">
-            <h1>{{ post.title }}</h1>
+            <div class="border-2 border border-primary p-3 mb-3">
+                <h1>{{ post.title }}</h1>
+                <p><time datetime="{{ post.publishedAt|date('Y-m-d') }}">{{ post.publishedAt|date('F j, Y') }}</time></p>
+                <small>
+                    Last updated on
+                    <time datetime="{{ post.publishedAt|date('Y-m-d') }}">
+                        {{ post.updatedAt|date('F j, Y') }}
+                    </time>
+                </small>
+            </div>
 
             <div>
                 {{ post.body|raw }}
