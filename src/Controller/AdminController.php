@@ -54,7 +54,7 @@ class AdminController extends AbstractController
             }
 
             $file->move(
-                $parameterBag->get('kernel.project_dir') . '/' . self::FILE_DIR,
+                $parameterBag->get('kernel.project_dir') . '/public/' . self::FILE_DIR,
                 $originalFilename
             );
 
