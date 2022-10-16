@@ -19,6 +19,20 @@ class Selections
         $this->thomas = new Drafter('Thomas');
     }
 
+    /**
+     * @return Drafter[]
+     */
+    public function getDrafters(): array
+    {
+        return [
+            $this->adam,
+            $this->brian,
+            $this->eristeo,
+            $this->kenneth,
+            $this->thomas,
+        ];
+    }
+
     public function getSelections(): array
     {
         return [
