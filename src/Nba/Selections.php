@@ -39,7 +39,8 @@ class Selections
             [$this->thomas, 'Sacramento Kings', 'LOSSES'],
             [$this->thomas, 'Miami Heat', 'WINS'],
             [$this->brian, 'Philadelphia Sixers', 'WINS'],
-            [$this->eristeo, 'Los Angeles Clippers', 'WINS'],
+            [$this->eristeo, 'LA Clippers', 'WINS'],
+            [$this->kenneth, 'Cleveland Cavaliers', 'WINS'],
         ];
     }
 }

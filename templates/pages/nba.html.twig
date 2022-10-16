@@ -17,7 +17,16 @@
                 <tbody>
                     {% for selectedTeamRecord in selectedTeamRecords %}
                         <tr>
-                            <td>{{ selectedTeamRecord.teamRecord.name }}</td>
+                            <td>
+                                <img
+                                    src="{{ selectedTeamRecord.teamRecord.name|nbaLogo }}"
+                                    alt=""
+                                    width="30"
+                                    height="30"
+                                >
+
+                                {{ selectedTeamRecord.teamRecord.name }}
+                            </td>
                             <td>{{ selectedTeamRecord.skinsType }}</td>
                             <td>{{ selectedTeamRecord.drafter.name }}</td>
                             <td>{{ selectedTeamRecord.teamRecord.wins }}</td>
