@@ -11,7 +11,6 @@
                         <th>Drafter</th>
                         <th class="text-end">Wins</th>
                         <th class="text-end">Losses</th>
-                        <th class="text-end">Points</th>
                         {% for drafter in drafters %}
                             <th class="text-end">{{ drafter.name }} points</th>
                         {% endfor %}
@@ -30,11 +29,16 @@
 
                                 {{ selectedTeamRecord.teamRecord.name }}
                             </td>
-                            <td>{{ selectedTeamRecord.skinsType }}</td>
+                            <td>
+                                {% include 'partials/skin-type.html.twig' with { skinType: selectedTeamRecord.skinsType } %}
+                            </td>
                             <td>{{ selectedTeamRecord.drafter.name }}</td>
-                            <td class="text-end">{{ selectedTeamRecord.teamRecord.wins }}</td>
-                            <td class="text-end">{{ selectedTeamRecord.teamRecord.losses }}</td>
-                            <td class="text-end">{{ selectedTeamRecord.points }}</td>
+                            <td class="text-end {{ selectedTeamRecord.skinsType == 'WINS' ? 'fw-bold' : '' }}">
+                                {{ selectedTeamRecord.teamRecord.wins }}
+                            </td>
+                            <td class="text-end {{ selectedTeamRecord.skinsType == 'LOSSES' ? 'fw-bold' : '' }}">
+                                {{ selectedTeamRecord.teamRecord.losses }}
+                            </td>
                             {% for drafter in drafters %}
                                 <td class="text-end">
                                     {% if drafter.name == selectedTeamRecord.drafter.name %}
@@ -59,12 +63,33 @@
                                 {% endif %}
                             {% endfor %}
                             <td class="text-end">
-                                {{ totalPoints }}
+                                <strong>{{ totalPoints }}</strong>
                             </td>
                         {% endfor %}
                     </tr>
                 </tbody>
             </table>
+
+            <h2>Draft recap</h2>
+            <ol>
+                {% for selection in selections %}
+                    <li>
+                        <strong>{{ selection[0].name }}</strong>
+                        selects the
+                        <img
+                                src="{{ selection[1]|nbaLogo }}"
+                                alt=""
+                                width="24"
+                                height="24"
+                        >
+                        <strong>{{ selection[1] }}</strong>
+                        and their
+                        <strong>
+                            {% include 'partials/skin-type.html.twig' with { skinType: selection[2] } %}
+                        </strong>
+                    </li>
+                {% endfor %}
+            </ol>
         </div>
     </div>
 {% endblock %}

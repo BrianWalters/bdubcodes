@@ -17,7 +17,7 @@ class SelectedTeamRecord
 
     public static function makeSelection(TeamRecord $teamRecord): ?SelectedTeamRecord
     {
-        $selections = new Selections();
+        $selections = new Draft();
 
         foreach ($selections->getSelections() as $selection) {
             if ($selection[1] === $teamRecord->getName()) {

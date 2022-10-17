@@ -2,7 +2,7 @@
 
 namespace App\Nba;
 
-class Selections
+class Draft
 {
     private Drafter $adam;
     private Drafter $brian;
