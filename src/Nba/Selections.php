@@ -52,9 +52,20 @@ class Selections
             [$this->brian, 'Charlotte Hornets', 'LOSSES'],
             [$this->thomas, 'Sacramento Kings', 'LOSSES'],
             [$this->thomas, 'Miami Heat', 'WINS'],
-            [$this->brian, 'Philadelphia Sixers', 'WINS'],
+            [$this->brian, 'Philadelphia 76ers', 'WINS'],
             [$this->eristeo, 'LA Clippers', 'WINS'],
             [$this->kenneth, 'Cleveland Cavaliers', 'WINS'],
+            [$this->adam, 'Washington Wizards', 'LOSSES'],
+            [$this->adam, 'Toronto Raptors', 'WINS'],
+            [$this->kenneth, 'Atlanta Hawks', 'WINS'],
+            [$this->eristeo, 'Brooklyn Nets', 'WINS'],
+            [$this->brian, 'Minnesota Timberwolves', 'WINS'],
+            [$this->thomas, 'Dallas Mavericks', 'WINS'],
+            [$this->thomas, 'Los Angeles Lakers', 'LOSSES'],
+            [$this->brian, 'New Orleans Pelicans', 'WINS'],
+            [$this->eristeo, 'New York Knicks', 'LOSSES'],
+            [$this->kenneth, 'Chicago Bulls', 'WINS'],
+            [$this->adam, 'Portland Trail Blazers', 'LOSSES'],
         ];
     }
 }
