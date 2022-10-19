@@ -11,9 +11,6 @@ class NbaData
     {
     }
 
-    /**
-     * @return array<string, TeamRecord>
-     */
     public function getTeamRecords(): array
     {
         $cacheItem = $this->cache->getItem('standings');
@@ -48,8 +45,11 @@ class NbaData
                 $teamRecordsHash[$teamRecord->getName()] = $teamRecord;
             }
 
-            $cacheItem->set($teamRecordsHash);
-            $cacheItem->expiresAfter(\DateInterval::createFromDateString('24 hours'));
+            $cacheItem->set([
+                'teamRecords' => $teamRecordsHash,
+                'time' => new \DateTime(),
+            ]);
+            $cacheItem->expiresAfter(\DateInterval::createFromDateString('90 minutes'));
             $this->cache->save($cacheItem);
         }
 

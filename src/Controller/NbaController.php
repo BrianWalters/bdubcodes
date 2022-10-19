@@ -15,7 +15,9 @@ class NbaController extends AbstractController
     #[Route('/nba', name: 'nba')]
     public function nba(NbaData $nbaData): Response
     {
-        $teamRecords = $nbaData->getTeamRecords();
+        $data = $nbaData->getTeamRecords();
+        $teamRecords = $data['teamRecords'];
+        $dataTime = $data['time'];
         $selections = new Draft();
         $selectedTeamRecords = [];
 
@@ -29,6 +31,7 @@ class NbaController extends AbstractController
             'selectedTeamRecords' => $selectedTeamRecords,
             'selections' => $selections->getSelections(),
             'drafters' => $selections->getDrafters(),
+            'dataTime' => $dataTime,
         ]);
     }
 }
