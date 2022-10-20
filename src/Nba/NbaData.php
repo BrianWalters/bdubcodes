@@ -49,7 +49,7 @@ class NbaData
                 'teamRecords' => $teamRecordsHash,
                 'time' => new \DateTime(),
             ]);
-            $cacheItem->expiresAfter(\DateInterval::createFromDateString('90 minutes'));
+            $cacheItem->expiresAfter(\DateInterval::createFromDateString('20 minutes'));
             $this->cache->save($cacheItem);
         }
 
