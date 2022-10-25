@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Nba\Drafter;
+use App\Nba\Draft;
 use App\Nba\NbaData;
 use App\Nba\SelectedTeamRecord;
-use App\Nba\Draft;
+use App\Nba\SkinsData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,16 +19,9 @@ class NbaController extends AbstractController
         $teamRecords = $data['teamRecords'];
         $dataTime = $data['time'];
         $selections = new Draft();
-        $selectedTeamRecords = [];
-
-        foreach ($teamRecords as $teamRecord) {
-            $selectedTeamRecord = SelectedTeamRecord::makeSelection($teamRecord);
-            if ($selectedTeamRecord)
-                $selectedTeamRecords[] = $selectedTeamRecord;
-        }
 
         return $this->render('pages/nba.html.twig', [
-            'selectedTeamRecords' => $selectedTeamRecords,
+            'skinsData' => new SkinsData($teamRecords),
             'selections' => $selections->getSelections(),
             'drafters' => $selections->getDrafters(),
             'dataTime' => $dataTime,
