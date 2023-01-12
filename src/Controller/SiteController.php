@@ -12,9 +12,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class SiteController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function home(): Response
+    public function home(PostRepository $postRepository): Response
     {
-        return $this->render('pages/home.html.twig');
+        $posts = $postRepository->findBy([
+            'published' => true,
+            'hidden' => false,
+        ], [
+            'createdAt' => 'DESC'
+        ]);
+        return $this->render('pages/home.html.twig', [
+            'posts' => $posts,
+        ]);
     }
 
     #[Route('/posts', name: 'posts')]

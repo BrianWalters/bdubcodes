@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block container %}
-    Hello world.
+    {% for post in posts %}
+        {% include 'partials/post.html.twig' %}
+        {% if not loop.last %}
+        <hr>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
