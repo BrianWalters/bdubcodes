@@ -3,7 +3,7 @@
 </h2>
 
 <div class="mb-3">
-    <div class="small">Published on <time datetime="{{ post.createdAt|date('c') }}">{{ post.createdAt|date }} {{ post.createdAt|date('e') }}</time></div>
+    <div class="small">Published on <time datetime="{{ post.publishedAt|date('c') }}">{{ post.publishedAt|date }} {{ post.publishedAt|date('e') }}</time></div>
     <div class="small">Updated on <time datetime="{{ post.updatedAt|date('c') }}">{{ post.updatedAt|date }} {{ post.createdAt|date('e') }}</time></div>
 </div>
 
