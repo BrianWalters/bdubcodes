@@ -2,6 +2,17 @@
 
 {% block title %}{{ post.title }} | {{ parent() }}{% endblock %}
 
+{% block head %}
+    <meta name="twitter:title" content="{{ post.title }}">
+    {% if post.description %}
+        <meta name="twitter:description" content="{{ post.description }}">
+    {% endif %}
+    {% if post.image %}
+        <meta name="twitter:image" content="{{ post.image }}">
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block container %}
     <div class="row">
         <div class="col-sm-12">

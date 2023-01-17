@@ -44,6 +44,12 @@ class Post
     #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $published = false;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $description;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $image;
+
     public function __construct()
     {
         $this->publishedAt = new \DateTimeImmutable();
@@ -122,6 +128,30 @@ class Post
     public function setPublished(?bool $published): self
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
