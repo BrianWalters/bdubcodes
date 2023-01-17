@@ -1,8 +1,10 @@
-<h2>{{ post.title }}</h2>
+<h2>
+    <a href="{{ path('post', { slug: post.slug }) }}">{{ post.title }}</a>
+</h2>
 
 <div class="mb-3">
-    <div class="small">Published on <time datetime="{{ post.createdAt|date('c') }}">{{ post.createdAt|date }}</time></div>
-    <div class="small">Updated on <time datetime="{{ post.updatedAt|date('c') }}">{{ post.updatedAt|date }}</time></div>
+    <div class="small">Published on <time datetime="{{ post.createdAt|date('c') }}">{{ post.createdAt|date }} {{ post.createdAt|date('e') }}</time></div>
+    <div class="small">Updated on <time datetime="{{ post.updatedAt|date('c') }}">{{ post.updatedAt|date }} {{ post.createdAt|date('e') }}</time></div>
 </div>
 
 <div>

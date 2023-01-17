@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts | Page {{ page }} | {{ parent() }}{% endblock %}
+
+{% block container %}
+    {% for post in posts %}
+        <p>
+            <a class="h2 d-block" href="{{ path('post', {slug: post.slug}) }}">{{ post.title }}</a>
+            {{ post.createdAt|date }} {{ post.createdAt|date('e') }}
+        </p>
+        {% if not loop.last %}
+            <hr>
+        {% endif %}
+    {% endfor %}
+    <p class="d-flex justify-content-center gap-2">
+        {% if page > 1 %}
+            <a href="{{ path('posts', { page: page - 1}) }}">Previous page</a>
+        {% endif %}
+        {% if posts|length == 10 %}
+            <a href="{{ path('posts', { page: page + 1}) }}">Next page</a>
+        {% endif %}
+    </p>
+{% endblock %}

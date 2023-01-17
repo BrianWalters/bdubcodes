@@ -3,8 +3,9 @@
 {% block container %}
     {% for post in posts %}
         {% include 'partials/post.html.twig' %}
-        {% if not loop.last %}
         <hr>
-        {% endif %}
     {% endfor %}
+    <p>
+        <a href="{{ path('posts') }}">All posts</a>
+    </p>
 {% endblock %}

@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,16 +20,23 @@ class SiteController extends AbstractController
             'hidden' => false,
         ], [
             'createdAt' => 'DESC'
-        ]);
+        ], 5);
         return $this->render('pages/home.html.twig', [
             'posts' => $posts,
         ]);
     }
 
     #[Route('/posts', name: 'posts')]
-    public function posts(): Response
+    public function posts(Request $request, PostRepository $postRepository): Response
     {
-        return new Response('TODO');
+        $page = $request->query->get('page', 1);
+
+        $posts = $postRepository->findBy(['published' => true, 'hidden' => false], [ 'createdAt' => 'DESC' ], 10, ($page - 1) * 10);
+
+        return $this->render('pages/posts.html.twig', [
+            'page' => $page,
+            'posts' => $posts,
+        ]);
     }
 
     #[Route('/posts/{slug}', name: 'post')]
