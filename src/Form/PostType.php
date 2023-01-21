@@ -18,7 +18,11 @@ class PostType extends AbstractType
             ->add('publishedAt')
             ->add('published')
             ->add('hidden')
-            ->add('body')
+            ->add('body', null, [
+                'attr' => [
+                    'style' => 'min-height: 100vh;'
+                ]
+            ])
         ;
     }
 
