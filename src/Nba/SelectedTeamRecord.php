@@ -15,11 +15,9 @@ class SelectedTeamRecord
         $this->skinsType = $skinsType;
     }
 
-    public static function makeSelection(TeamRecord $teamRecord): ?SelectedTeamRecord
+    public static function makeSelection(TeamRecord $teamRecord, DraftInterface $draft): ?SelectedTeamRecord
     {
-        $selections = new Draft();
-
-        foreach ($selections->getSelections() as $selection) {
+        foreach ($draft->getSelections() as $selection) {
             if ($selection[1] === $teamRecord->getName()) {
                 return new SelectedTeamRecord(
                     $teamRecord,

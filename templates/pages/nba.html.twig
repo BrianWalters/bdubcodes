@@ -8,43 +8,42 @@
             <h2>Standings</h2>
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>Type</th>
-                        <th>Drafter</th>
-                        <th class="text-end">Wins</th>
-                        <th class="text-end">Losses</th>
-                        <th class="text-end">Skins</th>
-                    </tr>
+                <tr>
+                    <th>Team</th>
+                    <th>Type</th>
+                    <th>Drafter</th>
+                    <th>Record</th>
+                    <th class="text-end">Skins</th>
+                </tr>
                 </thead>
                 <tbody>
-                    {% for selectedTeamRecord in skinsData.selectedTeamRecords %}
-                        <tr>
-                            <td>
-                                <img
-                                    src="{{ selectedTeamRecord.teamRecord.name|nbaLogo }}"
-                                    alt=""
-                                    width="30"
-                                    height="30"
-                                >
+                {% for selectedTeamRecord in skinsData.sortedSelectedTeamRecord %}
+                    <tr>
+                        <td>
+                            <img
+                                src="{{ selectedTeamRecord.teamRecord.name|nbaLogo }}"
+                                alt=""
+                                width="30"
+                                height="30"
+                            >
 
-                                {{ selectedTeamRecord.teamRecord.name }}
-                            </td>
-                            <td>
-                                {% include 'partials/skin-type.html.twig' with { skinType: selectedTeamRecord.skinsType } %}
-                            </td>
-                            <td>{{ selectedTeamRecord.drafter.name }}</td>
-                            <td class="text-end {{ selectedTeamRecord.skinsType == 'WINS' ? 'fw-bold' : '' }}">
-                                {{ selectedTeamRecord.teamRecord.wins }}
-                            </td>
-                            <td class="text-end {{ selectedTeamRecord.skinsType == 'LOSSES' ? 'fw-bold' : '' }}">
-                                {{ selectedTeamRecord.teamRecord.losses }}
-                            </td>
-                            <td class="text-end">
-                                {{ selectedTeamRecord.points }}
-                            </td>
-                        </tr>
-                    {% endfor %}
+                            {{ selectedTeamRecord.teamRecord.name }}
+                        </td>
+                        <td>
+                            {% include 'partials/skin-type.html.twig' with { skinType: selectedTeamRecord.skinsType } %}
+                        </td>
+                        <td>
+                            <strong>{{ selectedTeamRecord.drafter.name }}</strong> with
+                            #{{ skinsData.overallPickNumberForTeam(selectedTeamRecord.teamRecord.name) }}
+                        </td>
+                        <td>
+                            {{ selectedTeamRecord.teamRecord.wins }}-{{ selectedTeamRecord.teamRecord.losses }}
+                        </td>
+                        <td class="text-end font-monospace">
+                            {{ selectedTeamRecord.points }}
+                        </td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
             <p><small>Last update {{ dataTime | date }} {{ dataTime | date('e') }}</small></p>
@@ -61,23 +60,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for selectedTeamRecord in skinsData.selectedTeamRecords %}
+                            {% for selectedTeamRecord in skinsData.sortedSelectedTeamRecord %}
                                 {% if selectedTeamRecord.drafter.name == drafter.name %}
-                                    <tr>
-                                        <td>
-                                            <img
-                                                    src="{{ selectedTeamRecord.teamRecord.name|nbaLogo }}"
-                                                    alt=""
-                                                    width="30"
-                                                    height="30"
-                                            >
+                                <tr>
+                                    <td>
+                                        <img
+                                            src="{{ selectedTeamRecord.teamRecord.name|nbaLogo }}"
+                                            alt=""
+                                            width="30"
+                                            height="30"
+                                        >
 
-                                            {{ selectedTeamRecord.teamRecord.name }}
-                                        </td>
-                                        <td class="text-end">
-                                            {{ selectedTeamRecord.points }}
-                                        </td>
-                                    </tr>
+                                        {{ selectedTeamRecord.teamRecord.name }}
+                                    </td>
+                                    <td class="text-end">
+                                        {{ selectedTeamRecord.points }}
+                                    </td>
+                                </tr>
                                 {% endif %}
                             {% endfor %}
                             <tr>
@@ -90,6 +89,34 @@
                         </table>
                     </div>
                 {% endfor %}
+                <div>
+                    <h2>Totals</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Drafter</th>
+                                <th>MVT</th>
+                                <th class="text-end">Skins</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for name, skins in skinsData.getSortedSkinsForAllDrafters %}
+                                <tr>
+                                    <td>{{ name }}</td>
+                                    <td>
+                                        <img
+                                            src="{{ skinsData.mostValuableTeamForDrafter(name).teamRecord.name|nbaLogo }}"
+                                            alt=""
+                                            width="30"
+                                            height="30"
+                                        >
+                                    </td>
+                                    <td class="text-end">{{ skins }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <h2>Draft recap</h2>
@@ -99,10 +126,10 @@
                         <strong>{{ selection[0].name }}</strong>
                         selects the
                         <img
-                                src="{{ selection[1]|nbaLogo }}"
-                                alt=""
-                                width="24"
-                                height="24"
+                            src="{{ selection[1]|nbaLogo }}"
+                            alt=""
+                            width="24"
+                            height="24"
                         >
                         <strong>{{ selection[1] }}</strong>
                         and their

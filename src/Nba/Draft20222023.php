@@ -2,7 +2,7 @@
 
 namespace App\Nba;
 
-class Draft
+class Draft20222023 implements DraftInterface
 {
     private Drafter $adam;
     private Drafter $brian;
