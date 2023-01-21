@@ -55,6 +55,7 @@
                         <table class="table">
                             <thead>
                             <tr>
+                                <th class="text-end">Pick</th>
                                 <th>Team</th>
                                 <th class="text-end">Skins</th>
                             </tr>
@@ -63,6 +64,9 @@
                             {% for selectedTeamRecord in skinsData.sortedSelectedTeamRecord %}
                                 {% if selectedTeamRecord.drafter.name == drafter.name %}
                                 <tr>
+                                    <td class="text-end font-monospace">
+                                        {{ skinsData.overallPickNumberForTeam(selectedTeamRecord.teamRecord.name) }}
+                                    </td>
                                     <td>
                                         <img
                                             src="{{ selectedTeamRecord.teamRecord.name|nbaLogo }}"
@@ -73,14 +77,14 @@
 
                                         {{ selectedTeamRecord.teamRecord.name }}
                                     </td>
-                                    <td class="text-end">
+                                    <td class="text-end font-monospace">
                                         {{ selectedTeamRecord.points }}
                                     </td>
                                 </tr>
                                 {% endif %}
                             {% endfor %}
                             <tr>
-                                <td><strong>Total</strong></td>
+                                <td colspan="2"><strong>Total</strong></td>
                                 <td class="text-end">
                                     <strong>{{ skinsData.totalSkinsFor(drafter.name) }}</strong>
                                 </td>
