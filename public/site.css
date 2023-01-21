@@ -4,3 +4,7 @@ blockquote {
     font-size: 1.25rem;
     font-style: italic;
 }
+
+iframe {
+    max-width: 100%;
+}
