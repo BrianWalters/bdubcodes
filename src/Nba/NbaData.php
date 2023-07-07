@@ -11,7 +11,7 @@ class NbaData
     {
     }
 
-    public function getTeamRecords(): array
+    public function getLatestSeasonTeamRecords(): array
     {
         $cacheItem = $this->cache->getItem('standings');
 
@@ -37,13 +37,7 @@ class NbaData
 
             $decoded = json_decode($response->getContent(), true);
 
-            $teamRecords = array_map(fn(array $row) => $this->makeTeamRecordFromRow($row), $decoded['resultSets'][0]['rowSet']);
-
-            $teamRecordsHash = [];
-
-            foreach ($teamRecords as $teamRecord) {
-                $teamRecordsHash[$teamRecord->getName()] = $teamRecord;
-            }
+            $teamRecordsHash = self::makeTeamRecordsFromNbaData($decoded);
 
             $cacheItem->set([
                 'teamRecords' => $teamRecordsHash,
@@ -56,7 +50,25 @@ class NbaData
         return $cacheItem->get();
     }
 
-    private function makeTeamRecordFromRow(array $row): TeamRecord
+    public function get2022023SeasonData(): array
+    {
+        return self::makeTeamRecordsFromNbaData(json_decode(file_get_contents(__DIR__ . "/nba20222023.json"), true));
+    }
+
+    public static function makeTeamRecordsFromNbaData(array $nbaData): array
+    {
+        $teamRecords = array_map(fn(array $row) => self::makeTeamRecordFromRow($row), $nbaData['resultSets'][0]['rowSet']);
+
+        $teamRecordsHash = [];
+
+        foreach ($teamRecords as $teamRecord) {
+            $teamRecordsHash[$teamRecord->getName()] = $teamRecord;
+        }
+
+        return $teamRecordsHash;
+    }
+
+    private static function makeTeamRecordFromRow(array $row): TeamRecord
     {
         return new TeamRecord(
             $row[3] . ' ' . $row[4],

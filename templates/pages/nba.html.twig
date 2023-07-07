@@ -46,7 +46,9 @@
                 {% endfor %}
                 </tbody>
             </table>
-            <p><small>Last update {{ dataTime | date }} {{ dataTime | date('e') }}</small></p>
+            {% if updatedAt %}
+                <p><small>Last update {{ updatedAt | date }} {{ updatedAt | date('e') }}</small></p>
+            {% endif %}
 
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); gap: 1rem;">
                 {% for drafter in drafters %}

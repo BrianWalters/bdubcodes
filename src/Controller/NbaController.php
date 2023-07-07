@@ -4,9 +4,7 @@ namespace App\Controller;
 
 use App\Nba\Draft20222023;
 use App\Nba\NbaData;
-use App\Nba\SelectedTeamRecord;
 use App\Nba\SkinsData;
-use App\Nba\SkinSeason;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,16 +21,14 @@ class NbaController extends AbstractController
     public function nba20222023(NbaData $nbaData): Response
     {
         $draft = new Draft20222023();
-        $data = $nbaData->getTeamRecords();
-        $teamRecords = $data['teamRecords'];
+        $teamRecords = $nbaData->get2022023SeasonData();
         $skinData = new SkinsData($teamRecords, $draft);
-        $dataTime = $data['time'];
 
         return $this->render('pages/nba.html.twig', [
             'skinsData' => $skinData,
             'selections' => $draft->getSelections(),
             'drafters' => $draft->getDrafters(),
-            'dataTime' => $dataTime,
+            'updatedAt' => null,
         ]);
     }
 }
