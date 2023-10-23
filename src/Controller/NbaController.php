@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Nba\Draft20222023;
+use App\Nba\Draft20232024;
 use App\Nba\NbaData;
 use App\Nba\SkinsData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +15,23 @@ class NbaController extends AbstractController
     #[Route('/nba', name: 'nba')]
     public function nba(): Response
     {
-        return $this->redirectToRoute('nba-2022-2023');
+        return $this->redirectToRoute('nba-2023-2024');
+    }
+
+    #[Route('/nba/2023-2024', name: 'nba-2023-2024')]
+    public function nba20232024(NbaData $nbaData)
+    {
+        $draft = new Draft20232024();
+        $data = $nbaData->getLatestSeasonTeamRecords();
+        $teamRecords = $data['teamRecords'];
+        $skinData = new SkinsData($teamRecords, $draft);
+
+        return $this->render('pages/nba.html.twig', [
+            'skinsData' => $skinData,
+            'selections' => $draft->getSelections(),
+            'drafters' => $draft->getDrafters(),
+            'updatedAt' => $data['time'],
+        ]);
     }
 
     #[Route('/nba/2022-2023', name: 'nba-2022-2023')]
