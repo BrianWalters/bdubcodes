@@ -53,7 +53,7 @@ class Draft20232024 implements DraftInterface
             [$this->eristeo, 'Chicago Bulls', 'LOSSES'],
             [$this->adam, 'Atlanta Hawks', 'WINS'],
             [$this->thomas, 'New Orleans Pelicans', 'WINS'],
-//            [$this->sharkey, 'Minnesota Timberwolves', 'WINS'],
+            [$this->sharkey, 'Minnesota Timberwolves', 'WINS'],
         ];
     }
 
