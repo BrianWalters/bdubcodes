@@ -5,6 +5,32 @@
 {% block container %}
     <div class="row">
         <div class="col">
+            <h2>Totals</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Drafter</th>
+                    <th>MVT</th>
+                    <th class="text-end">Skins</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for name, skins in skinsData.getSortedSkinsForAllDrafters %}
+                    <tr>
+                        <td>{{ name }}</td>
+                        <td>
+                            <img
+                                src="{{ skinsData.mostValuableTeamForDrafter(name).teamRecord.name|nbaLogo }}"
+                                alt=""
+                                width="30"
+                                height="30"
+                            >
+                        </td>
+                        <td class="text-end">{{ skins }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
             <h2>Standings</h2>
             <table class="table table-striped">
                 <thead>
@@ -95,34 +121,6 @@
                         </table>
                     </div>
                 {% endfor %}
-                <div>
-                    <h2>Totals</h2>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Drafter</th>
-                                <th>MVT</th>
-                                <th class="text-end">Skins</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for name, skins in skinsData.getSortedSkinsForAllDrafters %}
-                                <tr>
-                                    <td>{{ name }}</td>
-                                    <td>
-                                        <img
-                                            src="{{ skinsData.mostValuableTeamForDrafter(name).teamRecord.name|nbaLogo }}"
-                                            alt=""
-                                            width="30"
-                                            height="30"
-                                        >
-                                    </td>
-                                    <td class="text-end">{{ skins }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
             </div>
 
             <h2>Draft recap</h2>
