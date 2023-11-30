@@ -11,7 +11,8 @@
                 <tr>
                     <th>Drafter</th>
                     <th>MVT</th>
-                    <th class="text-end">Skins</th>
+                    <th class="text-end font-monospaced">Skins</th>
+                    <th class="text-end font-monospaced">Behind</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,7 +27,10 @@
                                 height="30"
                             >
                         </td>
-                        <td class="text-end">{{ skins }}</td>
+                        <td class="text-end font-monospace">{{ skins }}</td>
+                        <td class="text-end font-monospace">
+                            {{ skinsData.getSortedSkinsForAllDrafters|first - skins }}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
