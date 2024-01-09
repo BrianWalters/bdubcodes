@@ -4,11 +4,7 @@
 
 {% block container %}
     {% for post in posts %}
-        <p>
-            <a class="h2 d-block" href="{{ path('post', {slug: post.slug}) }}">{{ post.title }}</a>
-            <span class="d-block">{{ post.description }}</span>
-            <span class="small">{{ post.createdAt|date }} {{ post.createdAt|date('e') }}</span>
-        </p>
+        {% include 'partials/post-item.html.twig' %}
         {% if not loop.last %}
             <hr>
         {% endif %}
