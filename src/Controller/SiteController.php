@@ -15,14 +15,14 @@ class SiteController extends AbstractController
     #[Route('/', name: 'home')]
     public function home(PostRepository $postRepository): Response
     {
-        $posts = $postRepository->findBy([
+        $post = $postRepository->findOneBy([
             'published' => true,
             'hidden' => false,
         ], [
             'publishedAt' => 'DESC'
-        ], 5);
+        ]);
         return $this->render('pages/home.html.twig', [
-            'posts' => $posts,
+            'lastPost' => $post,
         ]);
     }
 

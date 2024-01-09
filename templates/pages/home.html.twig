@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block container %}
-    {% for post in posts %}
-        {% include 'partials/post.html.twig' %}
-        <hr>
-    {% endfor %}
+    <h1 class="sr-only">BDubCodes</h1>
+    <p>
+        The last post is:
+    </p>
+    {% include 'partials/post.html.twig' with { post: lastPost } %}
     <p>
         <a href="{{ path('posts') }}">All posts</a>
     </p>
