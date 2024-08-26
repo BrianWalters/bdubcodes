@@ -35,7 +35,9 @@ class NbaData
                 ]
             );
 
-            $decoded = json_decode($response->getContent(), true);
+            $content = $response->getContent();
+
+            $decoded = json_decode($content, true);
 
             $teamRecordsHash = self::makeTeamRecordsFromNbaData($decoded);
 
@@ -53,6 +55,11 @@ class NbaData
     public function get2022023SeasonData(): array
     {
         return self::makeTeamRecordsFromNbaData(json_decode(file_get_contents(__DIR__ . "/nba20222023.json"), true));
+    }
+
+    public function get20232024SeasonData(): array
+    {
+        return self::makeTeamRecordsFromNbaData(json_decode(file_get_contents(__DIR__ . "/nba20232024.json.json"), true));
     }
 
     public static function makeTeamRecordsFromNbaData(array $nbaData): array
