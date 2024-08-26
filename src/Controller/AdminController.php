@@ -25,7 +25,7 @@ class AdminController extends AbstractController
         $directoryListing = $fileStorage->listContents('.');
 
         return $this->render('pages/file-list.html.twig', [
-            'files' => $directoryListing,
+            'files' => $directoryListing->sortByPath(),
         ]);
     }
 
