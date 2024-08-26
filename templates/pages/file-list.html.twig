@@ -5,13 +5,19 @@
 {% block container %}
     <div class="row">
         <div class="col-sm-12">
+            <p>
+                <a class="btn btn-primary" href="{{ path('file_upload') }}">Upload</a>
+            </p>
+
             <ul class="list-group">
-                <p>
-                    <a class="btn btn-primary" href="{{ path('file_upload') }}">Upload</a>
-                </p>
                 {% for file in files %}
                     <li class="list-group-item">
-                        <a href="{{ file.path|fileHref }}">{{ file.path }}</a>
+                        <summary class="d-flex gap-4">
+                            <a href="{{ file.path|fileHref }}">{{ file.path }}</a>
+                            <details>
+                                <img src="{{ file.path|fileHref }}" alt="" width="150" height="150" loading="lazy">
+                            </details>
+                        </summary>
                     </li>
                 {% endfor %}
             </ul>
