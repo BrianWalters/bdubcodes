@@ -18,7 +18,7 @@ class NbaData
         if (!$cacheItem->isHit()) {
             $response = $this->client->request(
                 'GET',
-                'https://stats.nba.com/stats/leaguestandingsv3?LeagueID=00&Season=2023-24&SeasonType=Regular%20Season',
+                'https://stats.nba.com/stats/leaguestandingsv3?LeagueID=00&Season=2024-25&SeasonType=Regular%20Season',
                 [
                     'headers' => [
                         'Host' => 'stats.nba.com',
