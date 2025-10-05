@@ -23,15 +23,14 @@ class NbaController extends AbstractController
     public function nba20242025(NbaData $nbaData)
     {
         $draft = new Draft20242025();
-        $data = $nbaData->getLatestSeasonTeamRecords();
-        $teamRecords = $data['teamRecords'];
+        $teamRecords = $nbaData->get20242025SeasonData();
         $skinData = new SkinsData($teamRecords, $draft);
 
         return $this->render('pages/nba.html.twig', [
             'skinsData' => $skinData,
             'selections' => $draft->getSelections(),
             'drafters' => $draft->getDrafters(),
-            'updatedAt' => $data['time'],
+            'updatedAt' => null,
         ]);
     }
 
