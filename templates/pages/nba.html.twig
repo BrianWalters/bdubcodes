@@ -35,6 +35,54 @@
                 {% endfor %}
                 </tbody>
             </table>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(325px, 1fr)); gap: 1rem;">
+                {% for drafter in drafters %}
+                    <div>
+                        <h2>{{ drafter.name }}</h2>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="text-end">Pick</th>
+                                <th>Team</th>
+                                <th class="text-end">Skins</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for selectedTeamRecord in skinsData.sortedSelectedTeamRecord %}
+                                {% if selectedTeamRecord.drafter.name == drafter.name %}
+                                    <tr>
+                                        <td class="text-end font-monospace">
+                                            {{ skinsData.overallPickNumberForTeam(selectedTeamRecord.teamRecord.name) }}
+                                        </td>
+                                        <td>
+                                            <img
+                                                src="{{ selectedTeamRecord.teamRecord.name|nbaLogo }}"
+                                                alt=""
+                                                width="30"
+                                                height="30"
+                                            >
+
+                                            {{ selectedTeamRecord.teamRecord.name }}
+                                        </td>
+                                        <td class="text-end font-monospace">
+                                            {{ selectedTeamRecord.points }}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            <tr>
+                                <td colspan="2"><strong>Total</strong></td>
+                                <td class="text-end">
+                                    <strong>{{ skinsData.totalSkinsFor(drafter.name) }}</strong>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}
+            </div>
+
             <h2>Standings</h2>
             <table class="table table-striped">
                 <thead>
@@ -79,53 +127,6 @@
             {% if updatedAt %}
                 <p><small>Last update {{ updatedAt | date }} {{ updatedAt | date('e') }}</small></p>
             {% endif %}
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(325px, 1fr)); gap: 1rem;">
-                {% for drafter in drafters %}
-                    <div>
-                        <h2>{{ drafter.name }}</h2>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th class="text-end">Pick</th>
-                                <th>Team</th>
-                                <th class="text-end">Skins</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for selectedTeamRecord in skinsData.sortedSelectedTeamRecord %}
-                                {% if selectedTeamRecord.drafter.name == drafter.name %}
-                                <tr>
-                                    <td class="text-end font-monospace">
-                                        {{ skinsData.overallPickNumberForTeam(selectedTeamRecord.teamRecord.name) }}
-                                    </td>
-                                    <td>
-                                        <img
-                                            src="{{ selectedTeamRecord.teamRecord.name|nbaLogo }}"
-                                            alt=""
-                                            width="30"
-                                            height="30"
-                                        >
-
-                                        {{ selectedTeamRecord.teamRecord.name }}
-                                    </td>
-                                    <td class="text-end font-monospace">
-                                        {{ selectedTeamRecord.points }}
-                                    </td>
-                                </tr>
-                                {% endif %}
-                            {% endfor %}
-                            <tr>
-                                <td colspan="2"><strong>Total</strong></td>
-                                <td class="text-end">
-                                    <strong>{{ skinsData.totalSkinsFor(drafter.name) }}</strong>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                {% endfor %}
-            </div>
 
             <h2>Draft recap</h2>
             <ol>
