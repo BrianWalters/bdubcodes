@@ -47,7 +47,7 @@ class Draft20252026 implements DraftInterface
             [$this->brian, 'Detroit Pistons', 'WINS'],
             [$this->adam, 'Los Angeles Lakers', 'WINS'],
             [$this->sharkey, 'Miami Heat', 'LOSSES'],
-            [$this->eristeo, 'Indiana Pacers', 'WINS'],
+            [$this->eristeo, 'Indiana Pacers', 'LOSSES'],
             [$this->eristeo, 'San Antonio Spurs', 'WINS'],
             [$this->sharkey, 'Philadelphia 76ers', 'WINS'],
             [$this->adam, 'Boston Celtics', 'WINS'],
