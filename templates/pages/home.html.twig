@@ -5,7 +5,9 @@
     <p>
         The last post is:
     </p>
-    {% include 'partials/post-item.html.twig' with { post: lastPost } %}
+    {% if lastPost %}
+        {% include 'partials/post-item.html.twig' with { post: lastPost } %}
+    {% endif %}
     <p>
         <a href="{{ path('posts') }}">All posts</a>
     </p>
