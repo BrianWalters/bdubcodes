@@ -6,6 +6,7 @@ use App\Nba\Draft20222023;
 use App\Nba\Draft20232024;
 use App\Nba\Draft20242025;
 use App\Nba\Draft20252026;
+use App\Nba\Draft20262027;
 use App\Nba\NbaData;
 use App\Nba\SkinsData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,24 +18,24 @@ class NbaController extends AbstractController
     #[Route('/nba', name: 'nba')]
     public function nba(): Response
     {
-        return $this->redirectToRoute('nba-2025-2026');
+        return $this->redirectToRoute('nba-2026-2027');
     }
 
-//    #[Route('/nba/2025-2026', name: 'nba-2025-2026')]
-//    public function nba20252026(NbaData $nbaData)
-//    {
-//        $draft = new Draft20252026();
-//        $data = $nbaData->getLatestSeasonTeamRecords();
-//        $teamRecords = $data['teamRecords'];
-//        $skinData = new SkinsData($teamRecords, $draft);
-//
-//        return $this->render('pages/nba.html.twig', [
-//            'skinsData' => $skinData,
-//            'selections' => $draft->getSelections(),
-//            'drafters' => $draft->getDrafters(),
-//            'updatedAt' => $data['time'],
-//        ]);
-//    }
+    #[Route('/nba/2026-2027', name: 'nba-2026-2027')]
+    public function nba20262027(NbaData $nbaData)
+    {
+        $draft = new Draft20262027();
+        $data = $nbaData->getLatestSeasonTeamRecords();
+        $teamRecords = $data['teamRecords'];
+        $skinData = new SkinsData($teamRecords, $draft);
+
+        return $this->render('pages/nba.html.twig', [
+            'skinsData' => $skinData,
+            'selections' => $draft->getSelections(),
+            'drafters' => $draft->getDrafters(),
+            'updatedAt' => $data['time'],
+        ]);
+    }
 
     #[Route('/nba/2025-2026', name: 'nba-2025-2026')]
     public function nba20252026(NbaData $nbaData)
